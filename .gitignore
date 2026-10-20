@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Built graphs (large, reproducible from data/)
+full_graphs/*.pt
+
+# Training / sweep outputs
+Gnnpipeline/results/
+results/
+*.pt
+*_best.pt
+*.log
+
+# Stats report (generated)
+stats_report.txt

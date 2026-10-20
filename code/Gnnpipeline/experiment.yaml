@@ -1,0 +1,42 @@
+# p5ailab -- single source of truth for the full HGNN benchmark experiment.
+#
+# All CLI defaults in run_sweep.py / slurm_run_single.sh should stay in sync with
+# these values. Override any of them on the command line to retune.
+
+# Models: BaselineHeteroGNN (reference), SpikingHAN, CausalHGNN, RelGT, MiniTransformer
+models:
+  - BaselineHeteroGNN
+  - SpikingHAN
+  - CausalHGNN
+  - RelGT
+  - MiniTransformer
+
+# Datasets shipped in p5ailab/datasets (all have a built HeteroData graph).
+datasets:
+  - pypi
+  - dataco
+  - supplygraph
+
+# Random seeds swept per dataset. 5 seeds -> mean +/- std is meaningful.
+seeds:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+
+# Training hyper-parameters (peak learning rate; cosine schedule decays it).
+epochs: 300
+lr: 0.01
+warmup: 0                 # linear warmup epochs before cosine decay
+weight_decay: 5.0e-4
+hidden: 64
+
+# Self-loop (fold each node's own features into the message): ON by default.
+self_loop: true
+
+# Global RNG seed for fully reproducible runs.
+seed: 1234
+
+# Where per-dataset CSVs and run logs are written.
+logdir: results

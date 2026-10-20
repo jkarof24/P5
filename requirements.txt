@@ -1,0 +1,17 @@
+# Root requirements.txt -- everything the pipeline needs.
+#
+# One place to install from. `run_all.sh` creates the venv and runs:
+#     pip install -r requirements.txt
+#
+# CPU:        pip install -r requirements.txt
+# GPU:        install the matching CUDA torch first, then the rest:
+#               pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cu124
+#               pip install -r requirements.txt
+# (RTX 50-series/Blackwell -> cu124; older cards like Volta P40 -> cu121)
+numpy
+pandas
+duckdb          # PyPI graph build + stats (DuckDB joins)
+torch==2.14.1
+torch_geometric==2.8.1
+scikit-learn
+pyyaml          # experiment.yaml (optional)
